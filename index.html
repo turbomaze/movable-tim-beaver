@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Anthony Liu</title>
+        <style>
+        .bl { color: #66D9EF; }
+        .ye { color: #E6DB74; }
+        .pi { color: #F92672; }
+        .br { color: #75714B; }
+        .lg { color: #8F908A; }
+
+        body {
+            background: #272822;
+            color: #F8F8F2;
+        }
+
+        div#haiku {
+            font-family: monospace;
+            text-align: center;
+
+            margin: auto;
+            top: 0; right: 0; bottom: 0; left: 0;
+            position: absolute;
+        }
+
+        div#program {
+            display: inline-block;
+            text-align: left;
+        }
+
+        span a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media only screen 
+        and (max-width : 399px) {
+            div#haiku {
+                height: 45px;
+                font-size: 12px;
+            }
+        }
+
+        @media only screen 
+        and (min-width : 400px) {
+            div#haiku {
+                height: 58px;
+                font-size: 16px;
+            }
+        }
+
+        @media only screen 
+        and (min-width : 700px) {
+            div#haiku {
+                height: 100px;
+                font-size: 30px;
+            }
+        }
+
+        @media only screen 
+        and (min-width : 1200px) {
+            div#haiku {
+                height: 130px;
+                font-size: 40px;
+            }
+        }
+
+        @media only screen 
+        and (min-width : 1600px) {
+            div#haiku {
+                height: 160px;
+                font-size: 50px;
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <!-- The homepage of https://haiku.xyz/ -->
+        <div id="haiku">
+            <div id="program">
+                <span class="lg">1&nbsp;&nbsp;</span><span class="pi">if</span>
+                <span class="wh">you</span>.<span class="bl">like</span>(<span class="ye">"science"</span>)<br>
+                <span class="lg">2&nbsp;&nbsp;</span><span class="pi">then</span>
+                <span class="wh">you</span>.<span class="bl">should</span>(<span class="">CHECK_OUT_MY_BLOG</span>);<br>
+                <span class="lg">3&nbsp;&nbsp;</span><span class="br">//at <a href="http://igliu.com">igliu.com</a></span>
+            </div>
+        </div>
+
+        <script src="b.js"></script>
+    </body>
+</html>
