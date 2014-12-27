@@ -52,15 +52,54 @@ var Beaver = (function() {
      * working variables */
     var pos;
     var keys;
-    var tim;
+    var tim, timInstr;
     var vel;
     var timer;
+    var keyDownFun, keyUpFun;
 
     /******************
      * work functions */
     function initTimBeaver() {
         function beginUserControl() {
-            document.addEventListener('keydown', function(e) {
+            //add the footer with instructions (and a cancel button)
+            timInstr = document.createElement('div');
+            timInstr.style.position = 'absolute';
+            timInstr.style.left = '1em';
+            timInstr.style.bottom = '1em';
+            timInstr.style.fontFamily = 'Monospace';
+            timInstr.style.fontSize = '1.5em';
+            timInstr.style.backgroundColor = 'rgba(95, 140, 31, 0.3)';
+            timInstr.style.padding = '0.5em';
+            timInstr.style.borderBottomLeftRadius = '0.5em';
+            timInstr.style.borderBottomRightRadius = '0.5em';
+            timInstr.style.borderTop = '0.5em solid rgba(95, 140, 31, 1)';
+            timInstr.id = 'tim-instr';
+            timInstr.innerHTML = 'w or &uarr; - up<br>'+
+                'a or &larr; - left<br>'+
+                's or &darr; - down<br>'+
+                'd or &rarr; - right<br>'+
+                '<hr>'+
+                '<input type="button" value="Get outa my face, Tim!"'+
+                'id="tim-off-btn">';
+            document.getElementsByTagName('body')[0].appendChild(
+                timInstr
+            );
+
+            document.getElementById('tim-off-btn').addEventListener(
+                'click',
+                function() {
+                    document.removeEventListener('keydown', keyDownFun);
+                    document.removeEventListener('keyup', keyUpFun);
+                    document.getElementsByTagName('body')[0].removeChild(
+                        tim
+                    );
+                    document.getElementsByTagName('body')[0].removeChild(
+                        timInstr
+                    );
+                }
+            );
+
+            keyDownFun = function(e) {
                 if (!keys[e.keyCode]) { //isn't already pressed
                     keys[e.keyCode] = true; //recognize the press
                     clearInterval(timer); //get rid of the old timer
@@ -75,8 +114,9 @@ var Beaver = (function() {
                         obeyCommand(moveCmd);
                     }, moveIncr);
                 }
-            });
-            document.addEventListener('keyup', function(e) {
+            };
+            document.addEventListener('keydown', keyDownFun);
+            keyUpFun = function(e) {
                 keys[e.keyCode] = false;
                 clearInterval(timer); //get rid of the old timer
                 
@@ -88,7 +128,8 @@ var Beaver = (function() {
                 timer = setInterval(function() {
                     obeyCommand(moveCmd);
                 }, moveIncr);
-            });
+            };
+            document.addEventListener('keyup', keyUpFun);
         } //enables the user to control tim
 
         //init misc working vars
