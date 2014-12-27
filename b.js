@@ -80,8 +80,9 @@ var Beaver = (function() {
                 's or &darr; - down<br>'+
                 'd or &rarr; - right<br>'+
                 '<hr>'+
-                '<input type="button" value="Get outa my face, Tim!"'+
-                'id="tim-off-btn">';
+                '<a id="tim-off-btn"'+
+                'style="color: #0063A2; cursor: pointer">'+
+                'Get outa my face, Tim!</a>';
             document.getElementsByTagName('body')[0].appendChild(
                 timInstr
             );
@@ -159,9 +160,9 @@ var Beaver = (function() {
 
         //move according to a plan, giving the user control when finished
         var moves = [
-            2,2,2,2,2,2,2,2,2,2,2,6,4,4,4,1,1,1,1,1,1,1,
+            2/*,2,2,2,2,2,2,2,2,2,2,6,4,4,4,1,1,1,1,1,1,1,
             1,1,5,4,4,6,2,2,2,2,2,2,2,2,6,4,4,5,1,1,1,1,
-            1,1,1,9,8,8,8,10,10,2,2,2,2,6,4,4,5,1,1
+            1,1,1,9,8,8,8,10,10,2,2,2,2,6,4,4,5,1,1*/
         ];
         for (var ai = 0; ai < moves.length; ai++) {
             setTimeout((function(moveCmd, lastOne) {
