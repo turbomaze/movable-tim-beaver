@@ -28,16 +28,16 @@ var Beaver = (function() {
     var UPL = UP+LEFT;
     var UPR = UP+RIGHT;
     var IMG_LOCS = [];
-    var IMG_PREF = 'http://turbomaze.github.io/movable-tim-beaver/';
-    IMG_LOCS[NONE] = IMG_PREF+'images/s.png';
-    IMG_LOCS[LEFT] = IMG_PREF+'images/l.png';
-    IMG_LOCS[RIGHT] = IMG_PREF+'images/r.png';
-    IMG_LOCS[DOWN] = IMG_PREF+'images/d.png';
-    IMG_LOCS[DOWNL] = IMG_PREF+'images/dl.png';
-    IMG_LOCS[DOWNR] = IMG_PREF+'images/dr.png';
-    IMG_LOCS[UP] = IMG_PREF+'images/u.png';
-    IMG_LOCS[UPL] = IMG_PREF+'images/ul.png';
-    IMG_LOCS[UPR] = IMG_PREF+'images/ur.png';
+    var IMG_PREF = 'http://i.imgur.com/';
+    IMG_LOCS[NONE] = IMG_PREF+'QLX57LS.png';
+    IMG_LOCS[LEFT] = IMG_PREF+'mldzWN6.png';
+    IMG_LOCS[RIGHT] = IMG_PREF+'ksFAhX2.png';
+    IMG_LOCS[DOWN] = IMG_PREF+'qd5i9Mq.png';
+    IMG_LOCS[DOWNL] = IMG_PREF+'miCMGOW.png';
+    IMG_LOCS[DOWNR] = IMG_PREF+'imFoLIM.png';
+    IMG_LOCS[UP] = IMG_PREF+'o1yeqBU.png';
+    IMG_LOCS[UPL] = IMG_PREF+'4qCrJIB.png';
+    IMG_LOCS[UPR] = IMG_PREF+'pNbLGEz.png';
     var nodeMapping = [];
     nodeMapping[NONE] = 4;
     nodeMapping[LEFT] = 3;
@@ -64,7 +64,7 @@ var Beaver = (function() {
         function beginUserControl() {
             //add the footer with instructions (and a cancel button)
             timInstr = document.createElement('div');
-            timInstr.style.position = 'absolute';
+            timInstr.style.position = 'fixed';
             timInstr.style.left = '1em';
             timInstr.style.bottom = '1em';
             timInstr.style.fontFamily = 'Monospace';
@@ -75,14 +75,28 @@ var Beaver = (function() {
             timInstr.style.borderBottomRightRadius = '0.5em';
             timInstr.style.borderTop = '0.5em solid rgba(95, 140, 31, 1)';
             timInstr.id = 'tim-instr';
-            timInstr.innerHTML = 'w or &uarr; - up<br>'+
-                'a or &larr; - left<br>'+
-                's or &darr; - down<br>'+
-                'd or &rarr; - right<br>'+
-                '<hr>'+
-                '<a id="tim-off-btn"'+
-                'style="color: #0063A2; cursor: pointer">'+
-                'Get outa my face, Tim!</a>';
+            timInstr.innerHTML = '<div style="float: left;'+
+                    'background-color: rgba(95, 140, 31, 0.83);'+
+                    'margin-bottom: 0.5em; padding: 0.25em;'+
+                    'border-radius: 0.25em; color: white;">'+
+                    '<div>w or &uarr; - up</div>'+
+                    '<div>a or &larr; - left</div>'+
+                    '<div>s or &darr; - down</div>'+
+                    '<div>d or &rarr; - right</div>'+
+                '</div>'+
+                '<div style="float: right;">'+
+                    '<iframe src="http://ghbtns.com/github-btn.html?'+
+                            'user=turbomaze&repo=movable-tim-beaver&type=fork" '+
+                            'allowtransparency="true" frameborder="0" '+
+                            'scrolling="0" width="62" height="20"'+
+                            'style="margin-top: 4px;">'+
+                    '</iframe>'+
+                '</div>'+
+                '<hr style="clear: both; margin-bottom: 0.5em;">'+
+                '<a id="tim-off-btn" '+
+                   'style="color: #0063A2; cursor: pointer">'+
+                    'Get outa my face, Tim!'+
+                '</a><br>';
             document.getElementsByTagName('body')[0].appendChild(
                 timInstr
             );
@@ -145,7 +159,7 @@ var Beaver = (function() {
         tim = document.createElement('img');
         tim.width = sqSize;
         tim.height = sqSize;
-        tim.style.position = 'absolute';
+        tim.style.position = 'fixed';
         tim.src = IMG_LOCS[vel];
         moveTim(pos);
         document.getElementsByTagName('body')[0].appendChild(tim);
@@ -160,9 +174,9 @@ var Beaver = (function() {
 
         //move according to a plan, giving the user control when finished
         var moves = [
-            2/*,2,2,2,2,2,2,2,2,2,2,6,4,4,4,1,1,1,1,1,1,1,
-            1,1,5,4,4,6,2,2,2,2,2,2,2,2,6,4,4,5,1,1,1,1,
-            1,1,1,9,8,8,8,10,10,2,2,2,2,6,4,4,5,1,1*/
+            2,2,2,2,2,2,2,2,2,2,2,2,2,2,6,6,6,6,4,4,4,4,
+            4,4,4,5,5,5,5,1,1,1,1,1,1,1,1,1,1,9,8,8,8,8,
+            8,8,10,10,2,2,2,2,2,2,6,6,6,4,4,4,5,5,1,1,1
         ];
         for (var ai = 0; ai < moves.length; ai++) {
             setTimeout((function(moveCmd, lastOne) {
